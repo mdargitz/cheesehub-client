@@ -6,7 +6,7 @@ export default function Cheeselist(props){
       <li key={index}>
         {cheese}
       </li>
-    )
+    );
   });
   return (
     <ul>
