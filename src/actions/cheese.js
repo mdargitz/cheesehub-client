@@ -1,3 +1,5 @@
+import {API_BASE_URL} from '../config';
+
 export const FETCH_CHEESES_REQUEST = 'FETCH_CHEESES_REQUEST';
 export const fetchCheesesRequest = () => {
   return {
@@ -24,14 +26,9 @@ export const fetchCheesesError = (error) => {
 export const fetchCheeses = () => {
   return (dispatch) => {
     dispatch(fetchCheesesRequest);
-
-    fetch('http://localhost:8080/api/cheeses')
-      .then(results => {
-        console.log(results);
-        return results.json()})
-      .then(cheeses => {
-        console.log(cheeses);
-        dispatch(fetchCheesesSuccess(cheeses))})
+    fetch(`${API_BASE_URL}/api/cheeses`)
+      .then(results => results.json())
+      .then(cheeses => dispatch(fetchCheesesSuccess(cheeses)))
       .catch(error => dispatch(fetchCheesesError(error)));
   };
 };

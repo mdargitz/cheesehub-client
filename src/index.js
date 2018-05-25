@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import CheeseList from './components/cheese-list';
 import registerServiceWorker from './registerServiceWorker';
-
+import {Provider} from 'react-redux';
 import store from './store';
-import {fetchCheeses} from './actions/cheese';
 
-console.log(store.getState());
-store.dispatch(fetchCheeses());
-console.log(store.getState());
-
-
-
-ReactDOM.render(<CheeseList cheeses={['1','2']} />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <CheeseList />
+  </Provider>,
+  document.getElementById('root'));
 registerServiceWorker();
