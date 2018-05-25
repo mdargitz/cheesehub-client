@@ -25,9 +25,13 @@ export const fetchCheeses = () => {
   return (dispatch) => {
     dispatch(fetchCheesesRequest);
 
-    fetch('http://localhost:8080/')
-      .then(results => results.json())
-      .then(cheeses => dispatch(fetchCheesesSuccess(cheeses)))
+    fetch('http://localhost:8080/api/cheeses')
+      .then(results => {
+        console.log(results);
+        return results.json()})
+      .then(cheeses => {
+        console.log(cheeses);
+        dispatch(fetchCheesesSuccess(cheeses))})
       .catch(error => dispatch(fetchCheesesError(error)));
   };
 };
